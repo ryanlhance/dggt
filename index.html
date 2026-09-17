@@ -123,6 +123,7 @@ ol.num li::marker{font-weight:700;color:var(--ink)}
 
 /* sections */
 .sec{padding-block:clamp(36px,5vw,52px);border-top:1px solid var(--line-soft)}
+.hero + .sec{border-top:0}
 .sec h3{margin-top:var(--s6)}
 .sec>ul.plain{margin-top:var(--s4)}
 
@@ -155,7 +156,8 @@ ol.num li::marker{font-weight:700;color:var(--ink)}
 .playerhead .headshot{border-radius:50%;background:var(--surface-2);flex:none}
 .playerhead .teamlogo{flex:none;width:72px;height:48px;background:var(--logo-dal) center/contain no-repeat}
 @media (max-width:520px){ .playerhead .teamlogo{display:none} }
-.statscroll{overflow-x:auto;margin-top:var(--s3)}
+.statshell{position:relative}
+.statscroll{overflow-x:auto;margin-top:var(--s3);-webkit-overflow-scrolling:touch}
 table.stat{border-collapse:collapse;width:100%}
 table.stat th,table.stat td{padding:var(--s2) var(--s3);text-align:center;border:1px solid var(--line-soft)}
 table.stat th{background:var(--surface-2);font-size:var(--t-sm);font-weight:600;color:var(--ink-3);white-space:nowrap}
@@ -182,8 +184,8 @@ table.oldnew td.new{font-weight:600}
 /* draft tool */
 .lab{margin-top:var(--s5);background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow)}
 .lab h3{margin-top:0}
-.colrow{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s4)}
-.colbtn{font-family:inherit;font-size:var(--t-base);font-weight:600;min-width:44px;padding:10px 0;text-align:center;border-radius:var(--r-sm);cursor:pointer;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);flex:1 1 44px;transition:background .12s,color .12s,border-color .12s}
+.colrow{display:grid;grid-template-columns:repeat(10,1fr);gap:var(--s2);margin-top:var(--s4)}
+.colbtn{font-family:inherit;font-size:var(--t-base);font-weight:600;min-height:44px;padding:10px 0;text-align:center;border-radius:var(--r-sm);cursor:pointer;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);transition:background .12s,color .12s,border-color .12s}
 .colbtn:hover{border-color:var(--blue);color:var(--ink)}
 .colbtn[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--paper)}
 .colbtn.taken{opacity:.42;text-decoration:line-through;cursor:not-allowed}
@@ -215,8 +217,41 @@ table.oldnew td.new{font-weight:600}
   .cal-row{grid-template-columns:1fr;gap:2px}
 }
 @media (max-width:520px){
-  :root{--t-base:16px;--t-md:18px;--t-lg:20px;--t-xl:24px;--t-2xl:27px}
-  .wrap{padding-inline:16px}
+  :root{
+    --t-xs:12px; --t-sm:14px; --t-base:16px; --t-md:17px;
+    --t-lg:19px; --t-xl:22px; --t-2xl:25px; --t-3xl:clamp(27px,7.4vw,34px);
+  }
+  .wrap{padding-inline:14px}
+
+  /* all six tabs fit, so the bar stops scrolling sideways */
+  .mark{display:none}
+  .bar nav{margin-left:0;width:100%;justify-content:space-between;gap:var(--s2)}
+  .bar nav a{font-size:var(--t-xs)}
+
+  /* less padding inside blocks, more room between them */
+  .hero{padding-block:var(--s6) 0}
+  .hero .crest{width:104px;height:104px;margin-bottom:var(--s3)}
+  .sec{padding-block:var(--s6)}
+  .sec h3{margin-top:var(--s5)}
+  .alert,.lab{padding:var(--s4)}
+  .alert{margin-top:var(--s5)}
+  .catbox{padding:var(--s4)}
+  ul.plain{gap:var(--s3)}
+  ul.plain li{padding-left:18px}
+  .colrow{grid-template-columns:repeat(5,1fr)}
+  .picks{gap:var(--s2)}
+
+  /* both of these tables fit the screen once the desktop floor is lifted */
+  table.grid{min-width:0}
+  .grid th,.grid td{padding:var(--s2) var(--s3)}
+  .grid tbody th{white-space:normal}
+  .grid tbody td.blank{height:38px}
+  .grid tbody td.blank::after{width:32px}
+  table.stat th,table.stat td{padding:var(--s2)}
+  .statshell:has(thead th:nth-child(7))::after{content:"";position:absolute;right:0;top:var(--s3);bottom:0;width:26px;pointer-events:none;background:linear-gradient(to right,transparent,var(--surface))}
+}
+@media (max-width:360px){
+  .grid th,.grid td{padding:var(--s2)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -348,11 +383,13 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
         <div class="who">Roope Hintz, DAL, 2025-26</div>
       </div>
     </div>
-    <div class="statscroll">
-      <table class="stat">
-        <thead><tr><th>G</th><th>A</th><th>+/&minus;</th><th>PPP</th><th>SHP</th><th>GWG</th><th>SOG</th><th>FW</th><th>HIT</th><th>BLK</th><th>PIM</th></tr></thead>
-        <tbody><tr><td>15</td><td>29</td><td>+16</td><td>19</td><td>0</td><td>1</td><td>126</td><td>430</td><td>60</td><td>18</td><td>18</td></tr></tbody>
-      </table>
+    <div class="statshell">
+      <div class="statscroll">
+        <table class="stat">
+          <thead><tr><th>G</th><th>A</th><th>+/&minus;</th><th>PPP</th><th>SHP</th><th>GWG</th><th>SOG</th><th>FW</th><th>HIT</th><th>BLK</th><th>PIM</th></tr></thead>
+          <tbody><tr><td>15</td><td>29</td><td>+16</td><td>19</td><td>0</td><td>1</td><td>126</td><td>430</td><td>60</td><td>18</td><td>18</td></tr></tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="catbox">
@@ -364,11 +401,13 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
         <div class="who">Jake Oettinger, DAL, 2025-26</div>
       </div>
     </div>
-    <div class="statscroll">
-      <table class="stat">
-        <thead><tr><th>W</th><th>SV%</th><th>SHO</th></tr></thead>
-        <tbody><tr><td>35</td><td>.899</td><td>4</td></tr></tbody>
-      </table>
+    <div class="statshell">
+      <div class="statscroll">
+        <table class="stat">
+          <thead><tr><th>W</th><th>SV%</th><th>SHO</th></tr></thead>
+          <tbody><tr><td>35</td><td>.899</td><td>4</td></tr></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
