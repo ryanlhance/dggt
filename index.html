@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dropping Gloves Getting Tugs Manager Hub</title>
+<meta name="description" content="How the Dropping Gloves Getting Tugs fantasy hockey league works, and what changed for the 2026-2027 season.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127954;</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --t-xs:13px; --t-sm:15px; --t-base:17px; --t-md:19px;
+  --t-lg:22px; --t-xl:28px; --t-2xl:34px; --t-3xl:clamp(34px,6vw,54px);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  --r:8px; --r-sm:5px;
+  --paper:#E7ECF1; --surface:#FFFFFF; --surface-2:#F1F5F9;
+  --ink:#0E1620; --ink-2:#4A5967; --ink-3:#71818F;
+  --line:#C9D5E0; --line-soft:#DDE5EC; --line-strong:#8FA2B4;
+  --blue:#14539E; --blue-ink:#0E3F79; --blue-soft:#DCE8F8;
+  --red:#A8231C; --red-mark:#C2342C;
+  --shadow:0 1px 2px rgba(14,22,32,.05), 0 8px 24px -16px rgba(14,22,32,.2);
+  --font:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --v1:#CFEBD8; --v2:#DAEED5; --v3:#E5F0D3; --v4:#EFF1D2; --v5:#F7EFD1;
+  --v6:#F9E7CE; --v7:#FADFCE; --v8:#FAD7CE; --v9:#F9CFCE; --v10:#F7C8C8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0B1118; --surface:#141D26; --surface-2:#1B2631;
+    --ink:#E7EDF3; --ink-2:#A2B0BE; --ink-3:#7F8E9C;
+    --line:#2A3846; --line-soft:#212E3A; --line-strong:#4A5D70;
+    --blue:#77B0EC; --blue-ink:#A8CDF6; --blue-soft:#15293F;
+    --red:#F0897F; --red-mark:#D9554A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.85);
+    --v1:#16321F; --v2:#1B3320; --v3:#213421; --v4:#283421; --v5:#303221;
+    --v6:#33301F; --v7:#342B1E; --v8:#34251C; --v9:#331F1A; --v10:#331A19;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0B1118; --surface:#141D26; --surface-2:#1B2631;
+  --ink:#E7EDF3; --ink-2:#A2B0BE; --ink-3:#7F8E9C;
+  --line:#2A3846; --line-soft:#212E3A; --line-strong:#4A5D70;
+  --blue:#77B0EC; --blue-ink:#A8CDF6; --blue-soft:#15293F;
+  --red:#F0897F; --red-mark:#D9554A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.85);
+  --v1:#16321F; --v2:#1B3320; --v3:#213421; --v4:#283421; --v5:#303221;
+  --v6:#33301F; --v7:#342B1E; --v8:#34251C; --v9:#331F1A; --v10:#331A19;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:var(--t-base);line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+h1,h2,h3,h4{margin:0;line-height:1.12;text-wrap:balance;letter-spacing:-.025em;font-weight:700}
+h1{font-size:var(--t-3xl);font-weight:800;letter-spacing:-.04em}
+h2{font-size:var(--t-xl)}
+h3{font-size:var(--t-lg)}
+h4{font-size:var(--t-base)}
+p,ul,ol,dl{margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.wrap{max-width:900px;margin-inline:auto;padding-inline:20px}
+section[id]{scroll-margin-top:calc(56px + env(safe-area-inset-top,0px))}
+#top{scroll-margin-top:0}
+.label{font-size:var(--t-sm);font-weight:600;color:var(--ink-3);line-height:1.4}
+.caption{font-size:var(--t-sm);color:var(--ink-3);line-height:1.5}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line-soft)}
+.bar-in{display:flex;align-items:center;gap:var(--s5);height:56px}
+.mark{font-weight:800;white-space:nowrap;color:var(--ink);text-decoration:none}
+.mark:hover{color:var(--blue)}
+.bar nav{margin-left:auto;display:flex;gap:var(--s5);overflow-x:auto;scrollbar-width:none}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{font-size:var(--t-sm);font-weight:500;color:var(--ink-2);text-decoration:none;white-space:nowrap;padding-block:var(--s1);border-bottom:2px solid transparent}
+.bar nav a:hover{color:var(--ink);border-bottom-color:var(--blue)}
+
+/* hero */
+.hero{padding-block:clamp(32px,5.5vw,56px) var(--s1);text-align:center}
+.hero h1{max-width:none}
+.hero .sub2{font-size:var(--t-xl);font-weight:600;color:var(--ink-2);letter-spacing:-.02em;margin-top:var(--s2)}
+
+/* changes card */
+.alert{margin-top:var(--s6);text-align:left;background:var(--surface);border:2px solid var(--red-mark);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow)}
+.alert h2{color:var(--red);font-size:var(--t-2xl);font-weight:800}
+.alert h3{margin-top:var(--s5)}
+.alert h3:first-of-type{margin-top:var(--s5)}
+ul.plain{list-style:none;padding:0;margin-top:var(--s3);display:grid;gap:var(--s2)}
+ul.plain li{position:relative;padding-left:20px}
+ul.plain li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.alert .close{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line-soft);color:var(--ink-2)}
+
+details.explain{margin-top:var(--s3)}
+details.explain summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:var(--s2);font-size:var(--t-sm);font-weight:500;color:var(--ink-3);padding-block:var(--s2)}
+details.explain summary:hover{color:var(--ink-2)}
+details.explain summary::-webkit-details-marker{display:none}
+details.explain summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
+details.explain[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+details.explain .body{display:grid;gap:var(--s3);color:var(--ink-2);padding-bottom:var(--s2)}
+ol.num{padding-left:22px;display:grid;gap:var(--s3)}
+ol.num li{padding-left:var(--s1)}
+ol.num li::marker{font-weight:700;color:var(--ink)}
+
+/* sections */
+.sec{padding-block:clamp(36px,5vw,52px);border-top:1px solid var(--line-soft)}
+.sec h3{margin-top:var(--s6)}
+.sec>ul.plain{margin-top:var(--s4)}
+
+/* money */
+.duescard{margin-top:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow);display:inline-block;min-width:min(100%,320px)}
+.duescard .amt{font-size:var(--t-2xl);font-weight:800;letter-spacing:-.035em;line-height:1}
+.duescard a{display:inline-block;margin-top:var(--s3);font-weight:600}
+.foot{margin-top:var(--s4);font-size:var(--t-sm);color:var(--ink-3)}
+
+/* rink */
+.icewrap{display:grid;grid-template-columns:1fr 230px;gap:var(--s5);margin-top:var(--s4);align-items:start}
+.rink{width:100%;height:auto;display:block}
+.rink .ice{fill:var(--surface);stroke:var(--line);stroke-width:5}
+.rink .redline{stroke:var(--red-mark);fill:none}
+.rink .blueline{stroke:var(--blue);fill:none}
+.rink .mark2{stroke:var(--red-mark);fill:none;opacity:.3}
+.rink .creasefill{fill:var(--blue-soft);stroke:var(--blue);stroke-width:4}
+.rink .net{fill:none;stroke:var(--ink-3);stroke-width:5}
+.rink .chip-bg{fill:var(--ink)}
+.rink .chip-t{fill:var(--surface);font-family:var(--font);font-weight:700;font-size:30px;text-anchor:middle}
+.rink .chip-n{font-weight:500;font-size:24px;opacity:.8}
+.others{border:1px solid var(--line);border-radius:var(--r);background:var(--surface-2);padding:var(--s4)}
+.others ul{list-style:none;padding:0;margin-top:var(--s3);display:grid;gap:var(--s2);font-weight:600}
+
+/* category example tables */
+.catbox{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);padding:var(--s4);margin-top:var(--s4)}
+.catbox h4{font-weight:700}
+.catbox .who{font-size:var(--t-sm);color:var(--ink-3);margin-top:2px}
+.statscroll{overflow-x:auto;margin-top:var(--s3)}
+table.stat{border-collapse:collapse;width:100%}
+table.stat th,table.stat td{padding:var(--s2) var(--s3);text-align:center;border:1px solid var(--line-soft)}
+table.stat th{background:var(--surface-2);font-size:var(--t-sm);font-weight:600;color:var(--ink-3);white-space:nowrap}
+table.stat td{font-weight:600;white-space:nowrap}
+
+/* generic table */
+.tablewrap{margin-top:var(--s5);overflow-x:auto;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--surface)}
+table.grid{border-collapse:collapse;width:100%;min-width:520px}
+.grid th,.grid td{text-align:left;padding:var(--s3) var(--s4);border-top:1px solid var(--line-soft)}
+.grid thead th{border-top:0;background:var(--surface-2);font-size:var(--t-sm);font-weight:600;color:var(--ink-3)}
+.grid tbody th{font-weight:600;white-space:nowrap}
+.grid tbody td.blank{height:44px}
+.grid tbody td.blank::after{content:"";display:block;height:1px;width:56px;background:repeating-linear-gradient(to right,var(--line) 0 5px,transparent 5px 10px)}
+.grid tr.divide td,.grid tr.divide th{border-bottom:2px solid var(--line-strong)}
+.grid .money{font-weight:700;color:var(--blue-ink)}
+
+/* old/new table */
+table.oldnew{border-collapse:collapse;width:100%;margin-top:var(--s3);max-width:640px}
+table.oldnew th,table.oldnew td{text-align:left;padding:var(--s2) var(--s3);border:1px solid var(--line-soft)}
+table.oldnew th{background:var(--surface-2);font-size:var(--t-sm);font-weight:600;color:var(--ink-3)}
+table.oldnew td{font-size:var(--t-sm)}
+table.oldnew td.new{font-weight:600}
+
+/* draft tool */
+.lab{margin-top:var(--s5);background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow)}
+.lab h3{margin-top:0}
+.colrow{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s4)}
+.colbtn{font-family:inherit;font-size:var(--t-base);font-weight:600;min-width:44px;padding:10px 0;text-align:center;border-radius:var(--r-sm);cursor:pointer;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);flex:1 1 44px;transition:background .12s,color .12s,border-color .12s}
+.colbtn:hover{border-color:var(--blue);color:var(--ink)}
+.colbtn[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--paper)}
+.colbtn.taken{opacity:.42;text-decoration:line-through;cursor:not-allowed}
+.colbtn.taken:hover{border-color:var(--line);color:var(--ink-3)}
+.strip{position:relative;height:48px;margin-top:var(--s5);border-bottom:1px solid var(--line)}
+.tick{position:absolute;top:14px;width:2px;height:24px;background:var(--blue);border-radius:1px;transform:translateX(-1px)}
+.scale{display:flex;justify-content:space-between;font-size:var(--t-xs);color:var(--ink-3);margin-top:var(--s2)}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:var(--s1);margin-top:var(--s5)}
+.pick{font-size:var(--t-sm);padding:6px var(--s2);border-radius:var(--r-sm);background:var(--surface-2);border:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:var(--s1)}
+.pick b{font-weight:600;color:var(--blue-ink)}
+.pick span{color:var(--ink-3)}
+.summary{margin-top:var(--s5);font-size:var(--t-base);color:var(--ink-2)}
+.summary b{font-size:var(--t-xl);font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+
+/* draft boards */
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s5);align-items:start}
+.board{border:1px solid var(--line-soft);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.board h4{padding:0 var(--s4);min-height:50px;display:flex;align-items:center;background:var(--surface-2);border-bottom:1px solid var(--line-soft)}
+.brow{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:var(--s3);padding:0 var(--s4);min-height:50px;border-top:1px solid var(--line-soft)}
+.brow:first-of-type{border-top:0}
+.brow .ord{font-size:var(--t-sm);color:var(--ink-3)}
+.brow .who{font-weight:600}
+.brow .got{font-weight:700}
+.brow .got.empty{color:var(--ink-3);font-weight:400}
+.brow select{font-family:inherit;font-size:var(--t-sm);padding:4px var(--s2);border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+
+@media (max-width:760px){
+  .icewrap,.boards{grid-template-columns:1fr}
+  .cal-row{grid-template-columns:1fr;gap:2px}
+}
+@media (max-width:520px){
+  :root{--t-base:16px;--t-md:18px;--t-lg:20px;--t-xl:24px;--t-2xl:27px}
+  .wrap{padding-inline:16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* dates */
+.cal{margin-top:var(--s5);border-top:1px solid var(--line-soft)}
+.cal-row{display:grid;grid-template-columns:200px 1fr;gap:var(--s5);padding:var(--s3) 2px;border-bottom:1px solid var(--line-soft);align-items:baseline}
+.cal .when{font-size:var(--t-sm);font-weight:600;color:var(--ink-3)}
+.cal .when.set{color:var(--blue-ink)}
+
+footer{border-top:1px solid var(--line-soft);padding-block:var(--s6) var(--s7)}
+footer .sign{font-size:var(--t-lg);font-weight:700}
+footer p{color:var(--ink-2);margin-top:var(--s2)}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="mark" href="#top">DGGT</a>
+    <nav>
+      <a href="#money">Money</a>
+      <a href="#settings">Settings</a>
+      <a href="#keepers">Keepers</a>
+      <a href="#draft">Draft</a>
+      <a href="#dates">Dates</a>
+      <a href="#playoffs">Playoffs</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap hero" id="top">
+  <h1>Dropping Gloves Getting Tugs</h1>
+  <div class="sub2">Manager Hub</div>
+
+  <div class="alert">
+    <h2>Changes to the 2026-2027 Season</h2>
+
+    <h3>Primary Changes</h3>
+    <ul class="plain">
+      <li>Winner of the losers bracket gets rewarded.</li>
+      <li>Managers are determining their draft positions based on last year's results.</li>
+    </ul>
+
+    <details class="explain">
+      <summary>Explain that to me</summary>
+      <div class="body">
+        <p>Snake drafts the way we have them set up are not always ideal for the person who gets first pick. They get 1st and then 20th, when the person who has last pick gets the 10th and 11th picks, which is typically a lot better of an option.</p>
+        <p>Two things are happening.</p>
+        <ol class="num">
+          <li>Instead of making our playoff results about 1st, 2nd, 3rd pick, we are focusing them on picking your draft positioning. This means instead of the worst team last year getting one good pick and then missing out on the majority of top tier players, they can make a decision to take a lower pick in order to get more good players instead of one really good player.</li>
+          <li>In an effort to keep everyone engaged all the way through playoffs, we are giving the winner of the losers bracket, aka 5th place, the third draft position pick.</li>
+        </ol>
+        <p>In this format, last place picks their position first, then second to last, then the winner of the losers bracket. That way people have something to play for at the end, and last place isn't screwed getting first pick and 20th pick. They can have picks closer together earlier if they want.</p>
+        <p>Instead of going for the first pick and getting 1st and 20th, you can go for 4th to get the 4th and 17th pick, or 8th to get the 8th and 13th pick. It allows for more strategy in the draft.</p>
+      </div>
+    </details>
+
+    <h3>Two Settings Tweaks</h3>
+    <table class="oldnew">
+      <thead><tr><th scope="col">Old</th><th scope="col">New</th></tr></thead>
+      <tbody>
+        <tr><td>3 Goalies can play daily</td><td class="new">2 Goalies can play daily</td></tr>
+        <tr><td>W, GAA, SV%, SHO</td><td class="new">W, SV%, SHO</td></tr>
+      </tbody>
+    </table>
+
+    <p class="close">Everything else is staying the same. To see how the league works, keep scrolling or use the tabs at the top.</p>
+  </div>
+</section>
+
+<section class="wrap sec" id="money">
+  <h2>Money</h2>
+  <div class="duescard">
+    <div class="amt">Dues $50*</div>
+    <a href="https://venmo.com/u/Ryan-Hance" target="_blank" rel="noopener">Venmo @Ryan-Hance</a>
+  </div>
+  <p class="foot">*Last place pays the champion's dues each season.</p>
+</section>
+
+<section class="wrap sec" id="settings">
+  <h2>League Settings</h2>
+  <ul class="plain">
+    <li>Weekly Head to Head</li>
+    <li>Categories</li>
+    <li>Daily Lineups</li>
+    <li>Players Lock at Their Game Start, not All Games Start</li>
+    <li>4 Waiver Pick Ups/Weekly</li>
+    <li>13 Points Available Weekly</li>
+    <li>Trade: Players, Picks, Keepers, Future Considerations</li>
+  </ul>
+
+  <h3>Roster</h3>
+  <div class="icewrap">
+    <svg class="rink" viewBox="0 0 860 810" role="img" aria-label="Half rink showing 2 left wings, 2 centers, 2 right wings, 3 defensemen, 2 utility slots and 2 goalies">
+      <path class="ice" d="M 12 6 H 848 V 518 A 280 280 0 0 1 568 798 H 292 A 280 280 0 0 1 12 518 Z"/>
+      <line class="redline" x1="12" y1="14" x2="848" y2="14" stroke-width="16"/>
+      <line class="blueline" x1="12" y1="200" x2="848" y2="200" stroke-width="16"/>
+      <line class="redline" x1="80" y1="700" x2="780" y2="700" stroke-width="6"/>
+      <circle class="mark2" cx="250" cy="520" r="145" stroke-width="4"/>
+      <circle class="mark2" cx="610" cy="520" r="145" stroke-width="4"/>
+      <circle class="mark2" cx="250" cy="520" r="10" stroke-width="12"/>
+      <circle class="mark2" cx="610" cy="520" r="10" stroke-width="12"/>
+      <path class="creasefill" d="M 348 700 A 82 82 0 0 1 512 700 Z"/>
+      <path class="net" d="M 388 700 v 46 h 84 v -46"/>
+      <g><rect class="chip-bg" x="112" y="250" width="140" height="62" rx="12"/><text class="chip-t" x="182" y="292">LW <tspan class="chip-n">&times;2</tspan></text></g>
+      <g><rect class="chip-bg" x="360" y="250" width="140" height="62" rx="12"/><text class="chip-t" x="430" y="292">C <tspan class="chip-n">&times;2</tspan></text></g>
+      <g><rect class="chip-bg" x="608" y="250" width="140" height="62" rx="12"/><text class="chip-t" x="678" y="292">RW <tspan class="chip-n">&times;2</tspan></text></g>
+      <g><rect class="chip-bg" x="206" y="446" width="168" height="62" rx="12"/><text class="chip-t" x="290" y="488">D <tspan class="chip-n">&times;3</tspan></text></g>
+      <g><rect class="chip-bg" x="486" y="446" width="168" height="62" rx="12"/><text class="chip-t" x="570" y="488">UTIL <tspan class="chip-n">&times;2</tspan></text></g>
+      <g><rect class="chip-bg" x="360" y="606" width="140" height="62" rx="12"/><text class="chip-t" x="430" y="648">G <tspan class="chip-n">&times;2</tspan></text></g>
+    </svg>
+    <div class="others">
+      <h4>Bench</h4>
+      <ul>
+        <li>BN &times;5</li>
+        <li>IR+ &times;3</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Categories</h3>
+  <div class="catbox">
+    <h4>Skaters</h4>
+    <div class="who">Roope Hintz, DAL, 2025-26</div>
+    <div class="statscroll">
+      <table class="stat">
+        <thead><tr><th>G</th><th>A</th><th>+/&minus;</th><th>PPP</th><th>SHP</th><th>GWG</th><th>SOG</th><th>FW</th><th>HIT</th><th>BLK</th><th>PIM</th></tr></thead>
+        <tbody><tr><td>15</td><td>29</td><td>+16</td><td>19</td><td>0</td><td>1</td><td>126</td><td>430</td><td>60</td><td>18</td><td>18</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="catbox">
+    <h4>Goalies</h4>
+    <div class="who">Jake Oettinger, DAL, 2025-26</div>
+    <div class="statscroll">
+      <table class="stat">
+        <thead><tr><th>W</th><th>SV%</th><th>SHO</th></tr></thead>
+        <tbody><tr><td>35</td><td>.899</td><td>4</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" id="keepers">
+  <h2>Keepers</h2>
+  <ul class="plain">
+    <li>One Forward (C, LW, RW) &ndash; <strong>Required</strong></li>
+    <li>One Defenseman (D) &ndash; <em>Optional</em></li>
+    <li>One Goalie (G) &ndash; <em>Optional</em></li>
+  </ul>
+  <p style="margin-top:var(--s4)">If you skip a Defenseman or Goalie, you will still have to draft a Defenseman or Goalie first. There will be a pre-draft determined at a later date so that all keepers are settled before the draft starts.</p>
+
+  <h3>The Keeper Tracker</h3>
+  <div class="tablewrap">
+    <table class="grid">
+      <thead><tr><th scope="col">Manager</th><th scope="col">Forward</th><th scope="col">Defense</th><th scope="col">Goalie</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Jack</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Scott</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Garrett</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">New manager 1</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Beau</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Peter</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">New manager 2</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Adam</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Jerry</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><th scope="row">Ryan</th><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wrap sec" id="draft">
+  <h2>Draft</h2>
+  <ul class="plain">
+    <li>Snake Draft</li>
+    <li>18 Rounds</li>
+    <li>1 Minute Per Pick</li>
+    <li>Traded Picks Land After Position Decisions</li>
+  </ul>
+
+  <div class="lab">
+    <h3>Pick a Position</h3>
+    <div class="colrow" id="colrow" role="group" aria-label="Draft position"></div>
+    <div class="strip" id="strip" aria-hidden="true"></div>
+    <div class="scale"><span>1</span><span>60</span><span>120</span><span>180</span></div>
+    <div class="picks" id="picks"></div>
+    <p class="summary" id="summary"></p>
+  </div>
+
+  <p style="margin-top:var(--s5)">Your draft position is determined by you, based on how your post-season went. The last place player in the regular season picks their position first. Then the second to last regular season player. Then the winner of the playoffs losers bracket. Then 6th, 7th, 8th in playoffs. Then 4th, 3rd, 2nd, 1st. You can see this year's order below.</p>
+  <p style="margin-top:var(--s3)">Use the Pick a Position sampler above to see what available position would serve your strategy best. As positions are chosen, they will come off the board and be shown in the table on the right.</p>
+
+  <div class="boards">
+    <div class="board">
+      <h4>Who Chooses When</h4>
+      <div id="orderboard"></div>
+    </div>
+    <div class="board">
+      <h4>Draft Position</h4>
+      <div id="positionboard"></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" id="dates">
+  <h2>Important Dates</h2>
+  <div class="cal">
+    <div class="cal-row"><span class="when">TBD</span><span>Dues due</span></div>
+    <div class="cal-row"><span class="when">TBD</span><span>Keepers lock</span></div>
+    <div class="cal-row"><span class="when">TBD</span><span>Draft position selection</span></div>
+    <div class="cal-row"><span class="when">TBD</span><span>Pre-draft for unkept D and G</span></div>
+    <div class="cal-row"><span class="when">TBD</span><span>Draft day</span></div>
+    <div class="cal-row"><span class="when set">September 29, 2026</span><span>Scoring begins</span></div>
+    <div class="cal-row"><span class="when set">March 3, 2027</span><span>Trade deadline</span></div>
+    <div class="cal-row"><span class="when set">March 22 &ndash; 28, 2027</span><span>Playoffs, Round 1</span></div>
+    <div class="cal-row"><span class="when set">March 29 &ndash; April 4, 2027</span><span>Playoffs, Semi Final</span></div>
+    <div class="cal-row"><span class="when set">April 5 &ndash; 10, 2027</span><span>Playoffs, Finals</span></div>
+  </div>
+</section>
+
+<section class="wrap sec" id="playoffs">
+  <h2>Playoffs</h2>
+  <div class="tablewrap">
+    <table class="grid">
+      <thead><tr><th scope="col">Finish</th><th scope="col">Payout</th><th scope="col">Draft Position Decision</th><th scope="col">Dues</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1st</th><td class="money">$350</td><td style="background:var(--v10)">Whatever Remains</td><td>Covered by 10th</td></tr>
+        <tr><th scope="row">2nd</th><td class="money">$100</td><td style="background:var(--v9)">9th</td><td>$50</td></tr>
+        <tr><th scope="row">3rd</th><td class="money">$50</td><td style="background:var(--v8)">8th</td><td>$50</td></tr>
+        <tr class="divide"><th scope="row">4th</th><td></td><td style="background:var(--v7)">7th</td><td>$50</td></tr>
+        <tr><th scope="row">5th</th><td></td><td style="background:var(--v3)">3rd</td><td>$50</td></tr>
+        <tr><th scope="row">6th</th><td></td><td style="background:var(--v4)">4th</td><td>$50</td></tr>
+        <tr><th scope="row">7th</th><td></td><td style="background:var(--v5)">5th</td><td>$50</td></tr>
+        <tr class="divide"><th scope="row">8th</th><td></td><td style="background:var(--v6)">6th</td><td>$50</td></tr>
+        <tr><th scope="row">9th</th><td></td><td style="background:var(--v2)">2nd</td><td>$50</td></tr>
+        <tr><th scope="row">10th</th><td></td><td style="background:var(--v1)">Any Draft Position</td><td>Pays the champion's too</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <div class="sign">Questions? Text me.</div>
+</footer>
+<script type="application/json" id="draft-picks">
+{}
+</script>
+<script>
+(function(){
+  var TEAMS=10, ROUNDS=18, TOTAL=TEAMS*ROUNDS;
+  var ORDER=["Jack","Scott","Garrett","New manager 1","Beau","Peter","New manager 2","Adam","Jerry","Ryan"];
+  var picks={};
+  try{ picks = JSON.parse(document.getElementById('draft-picks').textContent||'{}')||{}; }catch(e){ picks={}; }
+
+  var colrow=document.getElementById('colrow'), strip=document.getElementById('strip'),
+      picksEl=document.getElementById('picks'), summaryEl=document.getElementById('summary'),
+      orderBoard=document.getElementById('orderboard'), posBoard=document.getElementById('positionboard');
+  var selected=1;
+
+  function takenBy(pos){ for(var k in picks){ if(picks[k]===pos) return k; } return null; }
+
+  function picksFor(col){
+    var out=[];
+    for(var r=1;r<=ROUNDS;r++){
+      var slot=(r%2===1)?col:(TEAMS+1-col);
+      out.push((r-1)*TEAMS+slot);
+    }
+    return out;
+  }
+
+  function renderSampler(){
+    var list=picksFor(selected);
+    Array.prototype.forEach.call(colrow.children,function(b){
+      var n=Number(b.dataset.col);
+      b.setAttribute('aria-pressed',String(n===selected));
+      var t=takenBy(n);
+      if(t){ b.classList.add('taken'); b.title=t+' took position '+n; }
+      else { b.classList.remove('taken'); b.title='Position '+n; }
+    });
+    strip.innerHTML='';
+    list.forEach(function(p){
+      var t=document.createElement('div');
+      t.className='tick';
+      t.style.left=((p-0.5)/TOTAL*100)+'%';
+      strip.appendChild(t);
+    });
+    picksEl.innerHTML='';
+    list.forEach(function(p,i){
+      var d=document.createElement('div');
+      d.className='pick';
+      d.innerHTML='<span>R'+(i+1)+'</span><b>#'+p+'</b>';
+      picksEl.appendChild(d);
+    });
+    summaryEl.innerHTML='<b>'+(list[1]-list[0]-1)+'</b> picks between your first two picks <b>#'+list[0]+'</b> and <b>#'+list[1]+'</b>';
+  }
+
+  function renderBoards(){
+    orderBoard.innerHTML='';
+    ORDER.forEach(function(name,i){
+      var row=document.createElement('div');
+      row.className='brow';
+      row.innerHTML='<span class="ord">'+(i+1)+'</span><span class="who"></span><span class="got"></span>';
+      row.children[1].textContent=name;
+      var got=picks[name];
+      row.children[2].textContent=got?String(got):'';
+      orderBoard.appendChild(row);
+    });
+    posBoard.innerHTML='';
+    for(var n=1;n<=TEAMS;n++){
+      var row=document.createElement('div');
+      row.className='brow';
+      row.innerHTML='<span class="ord">'+n+'</span><span class="who"></span><span></span>';
+      var who=takenBy(n);
+      row.children[1].textContent=who||'Open';
+      if(!who) row.children[1].style.color='var(--ink-3)';
+      posBoard.appendChild(row);
+    }
+  }
+
+  for(var c=1;c<=TEAMS;c++){
+    var b=document.createElement('button');
+    b.type='button'; b.className='colbtn'; b.dataset.col=String(c);
+    b.textContent=String(c); b.setAttribute('aria-pressed','false');
+    b.setAttribute('aria-label','Draft position '+c);
+    b.addEventListener('click',function(e){ selected=Number(e.currentTarget.dataset.col); renderSampler(); });
+    colrow.appendChild(b);
+  }
+  renderSampler();
+  renderBoards();
+})();
+</script>
+</body>
+</html>
