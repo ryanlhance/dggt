@@ -143,10 +143,21 @@ or edit copy on this page:
 
 ---
 
-## Dates still marked TBD
+## Dates
 
-Dues due, keepers lock, draft position selection, pre-draft for unkept D and G, and draft day
-are all placeholders in the Important Dates section. Fill them in as Ryan sets them.
+Nothing is TBD any more. The draft position selection row was removed.
+
+Every row that has a clock time is a `<time datetime="...">` holding the moment in UTC, with
+the ET wording as its text. The "Show times in my timezone" button rewrites those rows into
+the viewer's own zone using `Intl.DateTimeFormat().resolvedOptions().timeZone`. That needs no
+permission prompt, so do not swap it for the Geolocation API. If you change a time, change
+BOTH the `datetime` attribute and the visible ET text, or the two will disagree.
+
+Set by Ryan, all ET, all 2026:
+- Dues due, September 25, 11pm
+- Keepers lock, September 25, 11pm
+- Pre-draft for unkept D and G, September 26, 11am
+- Draft day, September 27, 8pm
 
 Confirmed and sourced from the NHL API:
 - Scoring begins September 29, 2026 (NHL opening night)
