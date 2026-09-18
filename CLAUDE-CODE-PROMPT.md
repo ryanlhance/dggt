@@ -118,13 +118,15 @@ or restructure.
 Position chips are `<g><rect class="chip-bg">` plus `<text class="chip-t">`. It is themed
 through CSS classes, not fill attributes, so it works in both light and dark.
 
-**The draft numbering.** Rounds 1, 2 and 3 are the keepers (FW, D, G), so they take picks
-1 through 30 and nobody drafts in them. Drafting starts at round 4, pick 31, with draft
-position 1 going first, and snakes from there. Position 1 gets 31 and 50, position 10 gets
-40 and 41. The script holds this as `KEEP_ROUNDS`, `DRAFT_ROUNDS` and `OFFSET`; the pick pool
-is 180. The `.scale` labels under the tick strip and the shaded keeper band on it both follow
-from those constants, but the scale labels are literal text in the markup, so change them by
-hand if the pool size ever changes.
+**The draft numbering.** Rounds 1, 2 and 3 are the keepers, so the sampler pills read
+R1 FW, R2 D, R3 G with no pick number, and drafting runs R4 through R18. Pick numbers count
+drafted picks only, 1 through 150, so round 4 holds picks 1 to 10. Position 1 gets 1 and 20,
+position 4 gets 4 and 17, position 10 gets 10 and 11.
+
+Those numbers are the ones Ryan's explainer inside the changes card quotes, so they have to
+stay aligned. If you ever renumber the picks, his copy goes stale in the same move. The
+`.scale` labels under the tick strip are literal text in the markup rather than derived from
+`TOTAL`, so change them by hand too.
 
 **The playoffs table** colors the Draft Position Decision column with `--v1` (green, best)
 through `--v10` (red, worst) to show value dispersion. Both themes have their own ramp.

@@ -191,7 +191,6 @@ table.oldnew td.new{font-weight:600}
 .colbtn.taken{opacity:.42;text-decoration:line-through;cursor:not-allowed}
 .colbtn.taken:hover{border-color:var(--line);color:var(--ink-3)}
 .strip{position:relative;height:48px;margin-top:var(--s5);border-bottom:1px solid var(--line)}
-.strip::before{content:"";position:absolute;left:0;top:14px;height:24px;width:var(--keep-span,0);background:var(--surface-2);border-right:1px dashed var(--line-strong);border-radius:var(--r-sm) 0 0 var(--r-sm)}
 .tick{position:absolute;top:14px;width:2px;height:24px;background:var(--blue);border-radius:1px;transform:translateX(-1px)}
 .scale{display:flex;justify-content:space-between;font-size:var(--t-xs);color:var(--ink-3);margin-top:var(--s2)}
 .picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:var(--s1);margin-top:var(--s5)}
@@ -462,7 +461,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     <h3>Pick a Position</h3>
     <div class="colrow" id="colrow" role="group" aria-label="Draft position"></div>
     <div class="strip" id="strip" aria-hidden="true"></div>
-    <div class="scale"><span>1</span><span>60</span><span>120</span><span>180</span></div>
+    <div class="scale"><span>1</span><span>50</span><span>100</span><span>150</span></div>
     <div class="picks" id="picks"></div>
     <p class="summary" id="summary"></p>
   </div>
@@ -531,8 +530,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 </script>
 <script>
 (function(){
-  var TEAMS=10, KEEP_ROUNDS=3, DRAFT_ROUNDS=15;
-  var TOTAL=TEAMS*(KEEP_ROUNDS+DRAFT_ROUNDS), OFFSET=TEAMS*KEEP_ROUNDS;
+  var TEAMS=10, KEEP_ROUNDS=3, DRAFT_ROUNDS=15, TOTAL=TEAMS*DRAFT_ROUNDS;
   var KEEP_SLOTS=["FW","D","G"];
   var ORDER=["Jack","Scott","Garrett","New manager 1","Beau","Peter","New manager 2","Adam","Jerry","Ryan"];
   var picks={};
@@ -542,7 +540,6 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       picksEl=document.getElementById('picks'), summaryEl=document.getElementById('summary'),
       orderBoard=document.getElementById('orderboard'), posBoard=document.getElementById('positionboard');
   var selected=1;
-  strip.style.setProperty('--keep-span',(OFFSET/TOTAL*100)+'%');
 
   function takenBy(pos){ for(var k in picks){ if(picks[k]===pos) return k; } return null; }
 
@@ -550,7 +547,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     var out=[];
     for(var d=1;d<=DRAFT_ROUNDS;d++){
       var slot=(d%2===1)?col:(TEAMS+1-col);
-      out.push(OFFSET+(d-1)*TEAMS+slot);
+      out.push((d-1)*TEAMS+slot);
     }
     return out;
   }
