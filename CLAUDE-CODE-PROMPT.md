@@ -124,14 +124,13 @@ drafted picks only, 1 through 150, so round 4 holds picks 1 to 10. Position 1 ge
 position 4 gets 4 and 17, position 10 gets 10 and 11.
 
 Those numbers are the ones Ryan's explainer inside the changes card quotes, so they have to
-stay aligned. If you ever renumber the picks, his copy goes stale in the same move. The
-`.scale` labels under the tick strip are literal text in the markup rather than derived from
-`TOTAL`, so change them by hand too.
+stay aligned. If you ever renumber the picks, his copy goes stale in the same move.
 
-The tick strip spans all 18 rounds. The first 3/18 is the dashed `.keepband` with a "Keepers"
-label sitting above it, and the ticks and the `.scale` are both pushed right by that same
-fraction through the `--keep-span` variable, which the script sets on `.lab`. So the strip
-shows the keepers at the front of the draft while the pick numbers stay 1 through 150.
+The tick strip spans all 18 rounds. The first 3/18 is `.keepband`, a plain shaded bar with
+"Keepers" centred in it, no border. The ticks are pushed right by that same fraction through
+the `--keep-span` variable, which the script sets on `.lab`. So the strip shows the keepers at
+the front of the draft while the pick numbers stay 1 through 150. There is deliberately no
+number scale under the strip; the pills below carry every pick number already.
 
 **The playoffs table** colors the Draft Position Decision column with `--v1` (green, best)
 through `--v10` (red, worst) to show value dispersion. Both themes have their own ramp.
