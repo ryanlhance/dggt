@@ -154,8 +154,8 @@ permission prompt, so do not swap it for the Geolocation API. If you change a ti
 BOTH the `datetime` attribute and the visible ET text, or the two will disagree.
 
 Set by Ryan, all ET, all 2026:
-- Dues due, September 25, 11pm
-- Keepers lock, September 25, 11pm
+- Dues due, September 24, 11pm
+- Keepers lock, September 24, 11pm
 - Pre-draft for unkept D and G, September 26, 11am
 - Draft day, September 27, 8pm
 
