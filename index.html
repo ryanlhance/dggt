@@ -450,7 +450,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
   <h2>Draft</h2>
   <ul class="plain">
     <li>Snake Draft</li>
-    <li>18 Rounds</li>
+    <li>15 Rounds (18 minus 3 keepers)</li>
     <li>1 Minute Per Pick</li>
     <li>Traded Picks Land After Position Decisions</li>
   </ul>
@@ -459,7 +459,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     <h3>Pick a Position</h3>
     <div class="colrow" id="colrow" role="group" aria-label="Draft position"></div>
     <div class="strip" id="strip" aria-hidden="true"></div>
-    <div class="scale"><span>1</span><span>60</span><span>120</span><span>180</span></div>
+    <div class="scale"><span>1</span><span>50</span><span>100</span><span>150</span></div>
     <div class="picks" id="picks"></div>
     <p class="summary" id="summary"></p>
   </div>
@@ -528,7 +528,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 </script>
 <script>
 (function(){
-  var TEAMS=10, ROUNDS=18, TOTAL=TEAMS*ROUNDS;
+  var TEAMS=10, ROUNDS=15, TOTAL=TEAMS*ROUNDS;
   var ORDER=["Jack","Scott","Garrett","New manager 1","Beau","Peter","New manager 2","Adam","Jerry","Ryan"];
   var picks={};
   try{ picks = JSON.parse(document.getElementById('draft-picks').textContent||'{}')||{}; }catch(e){ picks={}; }
