@@ -1,4 +1,4 @@
-# DGGT Manager Hub — handoff for Claude Code
+# Seguin League Manager Hub — handoff for Claude Code
 
 ## What this is
 
@@ -93,7 +93,7 @@ BOTH the `datetime` attribute and the visible ET text, or the two will disagree.
 
 Set by Ryan:
 - Dues due, 11pm ET September 25, 2026
-- Draft day, TBD
+- Draft day, 7pm ET Monday September 28, 2026
 
 Keepers lock and the pre-draft came off the calendar in the 26-27 reset. See PARKED.md.
 
