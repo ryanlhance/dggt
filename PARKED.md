@@ -20,7 +20,8 @@ To bring back: uncomment. Nothing else depends on it.
 ## Keepers section
 
 `index.html`, the whole `<section id="keepers">`, including the Keeper Tracker
-table with the ten manager rows.
+table. Its rows are already the eight current managers, matching `ORDER`.
+Keepers are coming back at some point, they are just off for now.
 
 To bring back: uncomment, and put the Keepers link back in the nav.
 
@@ -72,9 +73,8 @@ This is Ryan's own writing. Do not reword it if it goes back up.
 `index.html`, the `.boards` block with `#orderboard` and `#positionboard`.
 
 To bring back: uncomment. The script already fills both when the elements
-exist, and reads the `#draft-picks` JSON block to do it. The `ORDER` array
-still holds the ten names from the old league, so it needs rewriting to the
-new eight managers first.
+exist, and reads the `#draft-picks` JSON block to do it. `ORDER` already holds
+the eight current managers, so nothing else needs changing.
 
 ---
 

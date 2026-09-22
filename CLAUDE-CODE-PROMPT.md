@@ -21,8 +21,11 @@ Do not add a bundler, a static site generator, or a package.json. This page does
 The Who Chooses When and Draft Position boards are commented out for the 26-27
 reset, so this workflow is dormant. The `#draft-picks` JSON block and the script that
 reads it are both still in place and still work; the boards just are not on the page.
-See PARKED.md before switching it back on. The `ORDER` array still holds the ten names
-from the old league and needs rewriting to the new eight managers first.
+See PARKED.md before switching it back on.
+
+The `ORDER` array holds the eight managers: Scott, Jack, Adam, Ryan, Jeremiah, Matthew,
+Aaron and Kendell. If that list ever changes, change it in BOTH `ORDER` and the Keeper
+Tracker rows in the parked keepers section, so the two stay in step.
 
 ## Things to know before editing
 
