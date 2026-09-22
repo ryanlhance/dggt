@@ -16,89 +16,13 @@ Do not add a bundler, a static site generator, or a package.json. This page does
 
 ---
 
-## Task 2 — Updating the draft board (the commit-per-pick workflow)
+## Task 2 — Updating the draft board (parked)
 
-Near the bottom of `index.html` there is a single block that holds all draft state:
-
-```html
-<script type="application/json" id="draft-picks">
-{}
-</script>
-```
-
-The keys are manager names exactly as they appear in the `ORDER` array in the script below it.
-The values are draft position numbers, 1 through 10.
-
-When Ryan says something like "Jack took 7", edit that block to:
-
-```html
-<script type="application/json" id="draft-picks">
-{"Jack": 7}
-</script>
-```
-
-Then commit and push. That's the whole update. The page reads the block on load and:
-
-- marks position 7 as taken and struck through in the Pick a Position sampler
-- shows 7 next to Jack in the Who Chooses When board
-- shows Jack next to position 7 in the Draft Position board
-
-Rules:
-- Never assign the same position to two managers. Validate before writing.
-- Manager names must match `ORDER` exactly, including "New manager 1" and "New manager 2".
-  When the two new managers are named, update BOTH the `ORDER` array and the Keeper Tracker
-  table rows in the Keepers section so the names match everywhere.
-- Commit message convention: `draft: Jack takes position 7`
-
----
-
-## Task 3 — Add NHL images
-
-The page currently has two example stat blocks in the League Settings > Categories section:
-
-- Skaters — Roope Hintz, DAL, 2025-26
-- Goalies — Jake Oettinger, DAL, 2025-26
-
-Each is a `<div class="catbox">` containing an `<h4>`, a `<div class="who">` line, and a stat table.
-
-Ryan wants a team logo and a player headshot on these. On GitHub Pages external images load
-fine, but committing the image files to the repo is more reliable than hotlinking NHL's CDN,
-which can move or rate-limit.
-
-Suggested markup, added inside each `.catbox` above the `<h4>`:
-
-```html
-<div class="playerhead">
-  <img class="headshot" src="assets/hintz.png" alt="Roope Hintz" width="72" height="72">
-  <img class="teamlogo" src="assets/dal.svg" alt="Dallas Stars" width="40" height="40">
-  <div>
-    <h4>Skaters</h4>
-    <div class="who">Roope Hintz, DAL, 2025-26</div>
-  </div>
-</div>
-```
-
-Suggested CSS, added near the `/* category example tables */` comment:
-
-```css
-.playerhead{display:flex;align-items:center;gap:var(--s3)}
-.playerhead .headshot{border-radius:50%;background:var(--surface-2);flex:none}
-.playerhead .teamlogo{flex:none}
-@media (max-width:520px){ .playerhead .teamlogo{display:none} }
-```
-
-Keep the existing `<h4>` and `<div class="who">` content unchanged, just nest them.
-
-Image sources Ryan can supply or you can fetch on his instruction:
-- Headshots: `https://assets.nhle.com/mugs/nhl/20252026/DAL/8478449.png` (Hintz)
-  and `.../8479979.png` (Oettinger)
-- Team logo: `https://assets.nhle.com/logos/nhl/svg/DAL_light.svg`
-
-Save them under `assets/` in the repo and reference them by relative path.
-Add `assets/DAL_dark.svg` and swap via a `prefers-color-scheme` rule if the light logo
-disappears on the dark theme.
-
----
+The Who Chooses When and Draft Position boards are commented out for the 26-27
+reset, so this workflow is dormant. The `#draft-picks` JSON block and the script that
+reads it are both still in place and still work; the boards just are not on the page.
+See PARKED.md before switching it back on. The `ORDER` array still holds the ten names
+from the old league and needs rewriting to the new eight managers first.
 
 ## Things to know before editing
 
@@ -118,21 +42,20 @@ or restructure.
 Position chips are `<g><rect class="chip-bg">` plus `<text class="chip-t">`. It is themed
 through CSS classes, not fill attributes, so it works in both light and dark.
 
-**The draft numbering.** Rounds 1, 2 and 3 are the keepers, so the sampler pills read
-R1 FW, R2 D, R3 G with no pick number, and drafting runs R4 through R18. Pick numbers count
-drafted picks only, 1 through 150, so round 4 holds picks 1 to 10. Position 1 gets 1 and 20,
-position 4 gets 4 and 17, position 10 gets 10 and 11.
+**The draft numbering.** Eight teams, eighteen rounds, no keeper rounds, so the sampler
+runs R1 through R18 over picks 1 to 144. The script holds this as three constants:
 
-Those numbers are the ones Ryan's explainer inside the changes card quotes, so they have to
-stay aligned. If you ever renumber the picks, his copy goes stale in the same move.
+    var TEAMS=8, KEEP_ROUNDS=0, DRAFT_ROUNDS=18, TOTAL=TEAMS*DRAFT_ROUNDS;
 
-The tick strip spans all 18 rounds. The first 3/18 is `.keepband`, a plain shaded bar with
-"Keepers" centred in it, no border. The ticks are pushed right by that same fraction through
-the `--keep-span` variable, which the script sets on `.lab`. So the strip shows the keepers at
-the front of the draft while the pick numbers stay 1 through 150. There is deliberately no
-number scale under the strip; the pills below carry every pick number already.
+Everything else follows from them. The sampler grid gets its column count from `--cols`
+and `--cols-sm`, the keeper bar only renders when `KEEP_ROUNDS` is above zero, and the
+keeper pills come from `KEEP_SLOTS.slice(0, KEEP_ROUNDS)`. So changing the number of teams
+or bringing keepers back is a constant change, not a markup change.
 
-**The playoffs table** colors the Draft Position Decision column with `--v1` (green, best)
+There is deliberately no number scale under the tick strip; the pills below carry every
+pick number already.
+
+**The playoffs table** (parked, see PARKED.md) colors the Draft Position Decision column with `--v1` (green, best)
 through `--v10` (red, worst) to show value dispersion. Both themes have their own ramp.
 
 **Bullet lists** use `ul.plain` with an absolutely positioned dot, specifically so inline
@@ -159,19 +82,17 @@ or edit copy on this page:
 
 ## Dates
 
-Nothing is TBD any more. The draft position selection row was removed.
-
 Every row that has a clock time is a `<time datetime="...">` holding the moment in UTC, with
 the ET wording as its text. The "Show times in my timezone" button rewrites those rows into
 the viewer's own zone using `Intl.DateTimeFormat().resolvedOptions().timeZone`. That needs no
 permission prompt, so do not swap it for the Geolocation API. If you change a time, change
 BOTH the `datetime` attribute and the visible ET text, or the two will disagree.
 
-Set by Ryan, all ET, all 2026:
-- Dues due, September 24, 11pm
-- Keepers lock, September 24, 11pm
-- Pre-draft for unkept D and G, September 26, 11am
-- Draft day, September 27, 8pm
+Set by Ryan:
+- Dues due, 11pm ET September 25, 2026
+- Draft day, TBD
+
+Keepers lock and the pre-draft came off the calendar in the 26-27 reset. See PARKED.md.
 
 Confirmed and sourced from the NHL API:
 - Scoring begins September 29, 2026 (NHL opening night)

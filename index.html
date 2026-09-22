@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Dropping Gloves Getting Tugs Manager Hub</title>
-<meta name="description" content="How the Dropping Gloves Getting Tugs fantasy hockey league works, and what changed for the 2026-2027 season.">
+<title>Unnamed League 26-27 Manager Hub</title>
+<meta name="description" content="How the Unnamed League 26-27 fantasy hockey league works, and what changed for the 2026-2027 season.">
 <link rel="canonical" href="https://ryanlhance.github.io/dggt/">
 <link rel="icon" href="assets/icon-32.png" sizes="32x32">
 <link rel="icon" href="assets/icon-180.png" sizes="180x180">
@@ -12,9 +12,9 @@
 <meta name="theme-color" content="#E7ECF1" media="(prefers-color-scheme:light)">
 <meta name="theme-color" content="#0B1118" media="(prefers-color-scheme:dark)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Dropping Gloves Getting Tugs">
-<meta property="og:title" content="Dropping Gloves Getting Tugs Manager Hub">
-<meta property="og:description" content="How the Dropping Gloves Getting Tugs fantasy hockey league works, and what changed for the 2026-2027 season.">
+<meta property="og:site_name" content="Unnamed League 26-27">
+<meta property="og:title" content="Unnamed League 26-27 Manager Hub">
+<meta property="og:description" content="How the Unnamed League 26-27 fantasy hockey league works, and what changed for the 2026-2027 season.">
 <meta property="og:url" content="https://ryanlhance.github.io/dggt/">
 <meta property="og:image" content="https://ryanlhance.github.io/dggt/assets/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -22,8 +22,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The DGGT league logo, a hockey glove gripping a puck over crossed sticks.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dropping Gloves Getting Tugs Manager Hub">
-<meta name="twitter:description" content="How the Dropping Gloves Getting Tugs fantasy hockey league works, and what changed for the 2026-2027 season.">
+<meta name="twitter:title" content="Unnamed League 26-27 Manager Hub">
+<meta name="twitter:description" content="How the Unnamed League 26-27 fantasy hockey league works, and what changed for the 2026-2027 season.">
 <meta name="twitter:image" content="https://ryanlhance.github.io/dggt/assets/og-image.jpg">
 <meta name="twitter:image:alt" content="The DGGT league logo, a hockey glove gripping a puck over crossed sticks.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
@@ -96,7 +96,6 @@ section[id]{scroll-margin-top:calc(56px + env(safe-area-inset-top,0px))}
 
 /* hero */
 .hero{padding-block:clamp(32px,5.5vw,56px) var(--s1);text-align:center}
-.hero .crest{width:140px;height:140px;border-radius:var(--r);border:1px solid var(--line);margin-bottom:var(--s4)}
 .hero h1{max-width:none}
 .hero .sub2{font-size:var(--t-xl);font-weight:600;color:var(--ink-2);letter-spacing:-.02em;margin-top:var(--s2)}
 
@@ -126,6 +125,7 @@ ol.num li::marker{font-weight:700;color:var(--ink)}
 .hero + .sec{border-top:0}
 .sec h3{margin-top:var(--s6)}
 .sec>ul.plain{margin-top:var(--s4)}
+.lede{margin-top:var(--s4);color:var(--ink-2)}
 
 /* money */
 .duescard{margin-top:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow);display:inline-block;min-width:min(100%,320px)}
@@ -184,7 +184,7 @@ table.oldnew td.new{font-weight:600}
 /* draft tool */
 .lab{margin-top:var(--s5);background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow)}
 .lab h3{margin-top:0}
-.colrow{display:grid;grid-template-columns:repeat(10,1fr);gap:var(--s2);margin-top:var(--s4)}
+.colrow{display:grid;grid-template-columns:repeat(var(--cols,10),1fr);gap:var(--s2);margin-top:var(--s4)}
 .colbtn{font-family:inherit;font-size:var(--t-base);font-weight:600;min-height:44px;padding:10px 0;text-align:center;border-radius:var(--r-sm);cursor:pointer;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);transition:background .12s,color .12s,border-color .12s}
 .colbtn:hover{border-color:var(--blue);color:var(--ink)}
 .colbtn[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--paper)}
@@ -246,7 +246,6 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 
   /* less padding inside blocks, more room between them */
   .hero{padding-block:var(--s6) 0}
-  .hero .crest{width:104px;height:104px;margin-bottom:var(--s3)}
   .sec{padding-block:var(--s6)}
   .sec h3{margin-top:var(--s5)}
   .alert,.lab{padding:var(--s4)}
@@ -254,7 +253,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
   .catbox{padding:var(--s4)}
   ul.plain{gap:var(--s3)}
   ul.plain li{padding-left:18px}
-  .colrow{grid-template-columns:repeat(5,1fr)}
+  .colrow{grid-template-columns:repeat(var(--cols-sm,5),1fr)}
   .picks{gap:var(--s2)}
 
   /* both of these tables fit the screen once the desktop floor is lifted */
@@ -276,24 +275,24 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 <body>
 <header class="bar">
   <div class="wrap bar-in">
-    <a class="mark" href="#top">DGGT</a>
+    <a class="mark" href="#top">Unnamed League 26-27</a>
     <nav>
       <a href="#money">Money</a>
       <a href="#settings">Settings</a>
-      <a href="#keepers">Keepers</a>
       <a href="#draft">Draft</a>
       <a href="#dates">Dates</a>
       <a href="#playoffs">Playoffs</a>
+      <a href="#tbd">TBD</a>
     </nav>
   </div>
 </header>
 
 <main>
 <section class="wrap hero" id="top">
-  <img class="crest" src="assets/dggt-mark.jpg" alt="" width="140" height="140" fetchpriority="high">
-  <h1>Dropping Gloves Getting Tugs</h1>
+  <h1>Unnamed League 26-27</h1>
   <div class="sub2">Manager Hub</div>
 
+<!-- PARKED: changes to the season card. See PARKED.md.
   <div class="alert">
     <h2>Changes to the 2026-2027 Season</h2>
 
@@ -315,6 +314,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
         <p>In this format, last place picks their position first, then second to last, then the winner of the losers bracket. That way people have something to play for at the end, and last place isn't screwed getting first pick and 20th pick. They can have picks closer together earlier if they want.</p>
         <p>Instead of going for the first pick and getting 1st and 20th, you can go for 4th to get the 4th and 17th pick, or 8th to get the 8th and 13th pick. It allows for more strategy in the draft.</p>
       </div>
+
     </details>
 
     <h3>Two Settings Tweaks</h3>
@@ -328,6 +328,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 
     <p class="close">Everything else is staying the same. To see how the league works, keep scrolling or use the tabs at the top.</p>
   </div>
+-->
 </section>
 
 <section class="wrap sec" id="money">
@@ -419,6 +420,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
   </div>
 </section>
 
+<!-- PARKED: keepers section. See PARKED.md.
 <section class="wrap sec" id="keepers">
   <h2>Keepers</h2>
   <ul class="plain">
@@ -447,12 +449,13 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     </table>
   </div>
 </section>
+-->
 
 <section class="wrap sec" id="draft">
   <h2>Draft</h2>
   <ul class="plain">
     <li>Snake Draft</li>
-    <li>15 Rounds (18 minus 3 keepers)</li>
+    <li>18 Rounds</li>
     <li>1 Minute Per Pick</li>
     <li>Traded Picks Land After Position Decisions</li>
   </ul>
@@ -462,9 +465,11 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     <div class="colrow" id="colrow" role="group" aria-label="Draft position"></div>
     <div class="strip" id="strip" aria-hidden="true"></div>
     <div class="picks" id="picks"></div>
+<!-- PARKED: picks-between summary. See PARKED.md.
     <p class="summary" id="summary"></p>
+-->
   </div>
-
+<!-- PARKED: draft position selection copy and the two boards. See PARKED.md.
   <p style="margin-top:var(--s5)">Your draft position is determined by you, based on how your post-season went. The last place player in the regular season picks their position first. Then the second to last regular season player. Then the winner of the playoffs losers bracket. Then 6th, 7th, 8th in playoffs. Then 4th, 3rd, 2nd, 1st. You can see this year's order below.</p>
   <p style="margin-top:var(--s3)">Use the Pick a Position sampler above to see what available position would serve your strategy best. As positions are chosen, they will come off the board and be shown in the table on the right.</p>
 
@@ -478,6 +483,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       <div id="positionboard"></div>
     </div>
   </div>
+-->
 </section>
 
 <section class="wrap sec" id="dates">
@@ -487,10 +493,8 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
     <span class="tznote" id="tznote"></span>
   </div>
   <div class="cal">
-    <div class="cal-row"><time class="when set" datetime="2026-09-25T03:00:00Z">September 24, 2026, 11pm ET</time><span>Dues due</span></div>
-    <div class="cal-row"><time class="when set" datetime="2026-09-25T03:00:00Z">September 24, 2026, 11pm ET</time><span>Keepers lock</span></div>
-    <div class="cal-row"><time class="when set" datetime="2026-09-26T15:00:00Z">September 26, 2026, 11am ET</time><span>Pre-draft for unkept D and G</span></div>
-    <div class="cal-row"><time class="when set" datetime="2026-09-28T00:00:00Z">September 27, 2026, 8pm ET</time><span>Draft day</span></div>
+    <div class="cal-row"><time class="when set" datetime="2026-09-26T03:00:00Z">September 25, 2026, 11pm ET</time><span>Dues due</span></div>
+    <div class="cal-row"><span class="when">TBD</span><span>Draft day</span></div>
     <div class="cal-row"><span class="when set">September 29, 2026</span><span>Scoring begins</span></div>
     <div class="cal-row"><span class="when set">March 3, 2027</span><span>Trade deadline</span></div>
     <div class="cal-row"><span class="when set">March 22 &ndash; 28, 2027</span><span>Playoffs, Round 1</span></div>
@@ -501,6 +505,8 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 
 <section class="wrap sec" id="playoffs">
   <h2>Playoffs</h2>
+  <p class="lede"><em>Payouts and playoff structure are to be determined based on vote. Expect that vote to be in October.</em></p>
+<!-- PARKED: playoffs table. See PARKED.md.
   <div class="tablewrap">
     <table class="grid">
       <thead><tr><th scope="col">Finish</th><th scope="col">Payout</th><th scope="col">Draft Position Decision</th><th scope="col">Dues</th></tr></thead>
@@ -518,6 +524,20 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       </tbody>
     </table>
   </div>
+-->
+</section>
+
+<section class="wrap sec" id="tbd">
+  <h2>To Be Determined</h2>
+  <ul class="plain">
+    <li>Payout Structure</li>
+    <li>Playoff Structure</li>
+    <li>Keepers (How many if at all? If yes, years of keeping will be based off when you drafted them)</li>
+    <li>Salary Cap (Do we want to explore that?)</li>
+    <li>Last Place Punishment (Is it necessary? If so, what should it be?)</li>
+    <li>Draft Order (Should we do the draft positions selecting or standard?)</li>
+    <li>How to handle expansion in 27-28</li>
+  </ul>
 </section>
 </main>
 
@@ -529,7 +549,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
 </script>
 <script>
 (function(){
-  var TEAMS=10, KEEP_ROUNDS=3, DRAFT_ROUNDS=15, TOTAL=TEAMS*DRAFT_ROUNDS;
+  var TEAMS=8, KEEP_ROUNDS=0, DRAFT_ROUNDS=18, TOTAL=TEAMS*DRAFT_ROUNDS;
   var KEEP_SLOTS=["FW","D","G"];
   var ORDER=["Jack","Scott","Garrett","New manager 1","Beau","Peter","New manager 2","Adam","Jerry","Ryan"];
   var picks={};
@@ -541,6 +561,8 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
   var selected=1;
   var KEEP_FRAC=KEEP_ROUNDS/(KEEP_ROUNDS+DRAFT_ROUNDS);
   strip.parentNode.style.setProperty('--keep-span',(KEEP_FRAC*100)+'%');
+  strip.parentNode.style.setProperty('--cols',TEAMS);
+  strip.parentNode.style.setProperty('--cols-sm',Math.ceil(TEAMS/2));
 
   function takenBy(pos){ for(var k in picks){ if(picks[k]===pos) return k; } return null; }
 
@@ -563,11 +585,13 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       else { b.classList.remove('taken'); b.title='Position '+n; }
     });
     strip.innerHTML='';
-    var band=document.createElement('div');
-    band.className='keepband';
-    band.innerHTML='<span></span>';
-    band.children[0].textContent='Keepers';
-    strip.appendChild(band);
+    if(KEEP_ROUNDS>0){
+      var band=document.createElement('div');
+      band.className='keepband';
+      band.innerHTML='<span></span>';
+      band.children[0].textContent='Keepers';
+      strip.appendChild(band);
+    }
     list.forEach(function(p){
       var t=document.createElement('div');
       t.className='tick';
@@ -575,7 +599,7 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       strip.appendChild(t);
     });
     picksEl.innerHTML='';
-    KEEP_SLOTS.forEach(function(slot,i){
+    KEEP_SLOTS.slice(0,KEEP_ROUNDS).forEach(function(slot,i){
       var d=document.createElement('div');
       d.className='pick keep';
       d.innerHTML='<span>R'+(i+1)+'</span><b></b>';
@@ -588,10 +612,11 @@ footer p{color:var(--ink-2);margin-top:var(--s2)}
       d.innerHTML='<span>R'+(KEEP_ROUNDS+i+1)+'</span><b>#'+p+'</b>';
       picksEl.appendChild(d);
     });
-    summaryEl.innerHTML='<b>'+(list[1]-list[0]-1)+'</b> picks between your first two picks <b>#'+list[0]+'</b> and <b>#'+list[1]+'</b>';
+    if(summaryEl) summaryEl.innerHTML='<b>'+(list[1]-list[0]-1)+'</b> picks between your first two picks <b>#'+list[0]+'</b> and <b>#'+list[1]+'</b>';
   }
 
   function renderBoards(){
+    if(!orderBoard||!posBoard) return;
     orderBoard.innerHTML='';
     ORDER.forEach(function(name,i){
       var row=document.createElement('div');
